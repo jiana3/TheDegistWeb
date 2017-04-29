@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3><%= @article.title %></h3>
+  </div>
+  <div class="panel-body">
+   <table width="90%">
+     <tr>
+     <td width="60%">
+          <strong>Author:</strong>
+          <%= @article.author %>
+     </td>  
+     <td width="30%">
+          <strong>Publish date:</strong>
+          <%= @article.publish_date %>
+     </td>     
+     </tr>
+     <tr>
+       <td>
+          <strong>Source:</strong>
+          <%= @article.source %>        
+        </td>  
+     </tr>
+   </table>        
+ </div>
+  <div class="panel-body">
+    <p> <%= image_tag @article.img_url %> </p>
+  </div>
+  <div class="panel-body">
+    <p><%= @article.summary %></p>
+  </div>
+<p>
+  <strong>More details..</strong>
+  <a href="<%= @article.url %>"><%= @article.url %></a>
+</p>
+ <div class="panel-footer">
+   <% unless @article.tag_list.empty? %>
+      <p>&nbsp;&nbsp;Tagged: <%= @article.tag_list.join(' ') %></p>
+    <% end %>
+ </div>   
+
+</div>
+<b><%= link_to 'Back', articles_path %></b>

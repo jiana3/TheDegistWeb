@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= article.title %> <small>Posted On: <%= article.created_at.strftime("%Y %m %d")%></small></h2>
+    <% if article.img_url != nil %>
+    <div style="float:left">
+    <p><%= image_tag article.img_url, height: '80', width: '70'%></p>
+    </div>
+    <% end %>
+    <p>&nbsp;&nbsp;<%= truncate(article.summary, length: 25, separator: ' ') %></p>  
+    <% unless article.tag_list.empty? %>
+      <p>&nbsp;&nbsp;Tagged: <%= article.tag_list.join(' ') %></p>
+    <% end %>
+    <div class="btn-group pull-right" role="group">
+      <%= link_to 'Show', article, class: "btn btn-default" %>              
+  </div>
+  </div>
+   <div class="panel-footer">
+    Author: <%=article.author %>
+    <span style="float:right;"> Source: <%=article.source %> </span>  
+    </div> 
+</div>
+

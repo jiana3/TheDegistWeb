@@ -1,0 +1,24 @@
+
+
+<% templates.articles.each do |article| %>
+  <div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= article.title %> </h2></br>
+    <small>Posted On: <%= article.created_at.strftime("%Y %m %d")%></small>
+    <% if article.img_url != nil %>
+    <div style="float:left">
+    <p><%= image_tag article.img_url, height: '80', width: '70'%></p>
+    </div>
+    <% end %>
+    <p align=justify>&nbsp;&nbsp;&nbsp;<%= article.summary %></p>  
+    <p>
+    <small>More details..</small>
+    <a href="<%= article.url %>"><%= article.url %></a>
+    </p>  
+  </div>
+   <div class="panel-footer">
+    Author: <%=article.author %>
+    <span style="float:right;"> Source: <%=article.source %> </span>  
+    </div> 
+</div>
+<% end %>

@@ -1,0 +1,10 @@
+rails generate scaffold user first_name:string last_name:string bio:text email:string username:string password_digest:string interests:text
+
+
+rails generate controller sessions login logout  
+
+
+
+rails generate scaffold article source:string title:string summary:text publish_date:date author:string url:string img_url:string
+bundle update coffee-script-source
+rake acts_as_taggable_on_engine:install:migrations

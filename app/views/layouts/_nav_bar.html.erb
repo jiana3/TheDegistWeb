@@ -1,0 +1,44 @@
+<nav class="navbar navbar-custom">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">The Digest</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if current_user %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Articles", articles_path %></li>
+          <li><%= link_to 'Articles of Interest', interest_path %></li>
+          <li><%= link_to 'Edit User', edit_user_path(current_user) %></li>
+          <% if current_user.is_subscriber %>
+           <li><%= link_to 'Unsubscribe to Email', subscription_path(current_user.id,"false"), :method => :put %></li>
+          <% else %>
+          <li><%= link_to 'Subscribe to Email', subscription_path(current_user.id,"true"), :method => :put %></li>
+          <% end %>
+        </ul>
+        <% if request.path == articles_path%>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <%= form_tag(articles_path, :method => "get", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+            </div>
+            <%= submit_tag "Search" %>
+          <% end %>
+          </form>
+        <% end %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Log Out:  "+current_user.username.upcase , logout_path, method: :delete%></li>        
+        </ul>
+      <% end %>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
